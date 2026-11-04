@@ -1,56 +1,70 @@
 # The Daily Harvest
 
-A modern TypeScript-based shopping website built with React and Vite.
+A TypeScript shopping website built with React and Vite. This application is the sample project for the GitHub Copilot hands-on labs.
 
-## 🚀 Getting Started
+## Prerequisites
 
-### Prerequisites
+- Node.js 20 or later (required by the installed jsdom test environment)
+- npm
 
-- Node.js (version 18 or higher)
-- npm or yarn
+## Setup and run
 
-### Installation
+Run these commands from the repository root:
 
-1. Navigate to the eCommApp directory:
-   ```bash
-   cd eCommApp
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open your browser and visit `http://localhost:3000`
-
-## 📁 Project Structure
-
+```bash
+cd eCommApp
+npm ci
+npm run dev
 ```
+
+Vite starts the development server on `http://localhost:3000` and is configured to open the browser automatically. If that port is unavailable, check the URL printed by Vite in the terminal.
+
+## Common commands
+
+Run these from `eCommApp/`:
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm run build` | Type-check with TypeScript, then create the production build in `dist/` |
+| `npm run preview` | Serve the production build locally; run `npm run build` first |
+| `npm run lint` | Run ESLint |
+| `npm test` | Run Vitest in watch mode |
+| `npm run test:run` | Run all tests once |
+| `npm run test:ui` | Open the Vitest UI |
+| `npm run test:coverage` | Run tests and print coverage; HTML report is written under `coverage/` |
+
+Tests use Vitest, React Testing Library, and jsdom. Test files use the `*.test.*` naming pattern and are kept beside the code they cover. At present, the suite contains a `CartPage` component test; there is no end-to-end test suite, so test coverage is limited. Shared test setup is in `src/test/setup.ts`, and `src/test/test-utils.tsx` provides a render helper with the router and cart provider.
+
+## Project structure
+
+```text
 eCommApp/
-├── public/              # Static assets
+├── public/
+│   └── products/         # Product JSON data and product images
 ├── src/
-│   ├── components/      # Reusable React components
-│   ├── types/          # TypeScript type definitions
-│   ├── utils/          # Utility functions
-│   ├── App.tsx         # Main App component
-│   ├── App.css         # App styles
-│   ├── main.tsx        # Application entry point
-│   └── index.css       # Global styles
-├── index.html          # HTML template
-├── package.json        # Project dependencies
-├── tsconfig.json       # TypeScript configuration
-├── vite.config.ts      # Vite configuration
-└── README.md          # This file
+│   ├── components/       # Pages and UI components; CartPage.test.tsx is an example test
+│   ├── context/           # Shared React state, including the shopping cart
+│   ├── test/              # Test setup and shared render helpers
+│   ├── types/             # TypeScript interfaces and types
+│   ├── utils/             # Reusable helper functions
+│   ├── App.tsx            # Application routes and top-level providers
+│   ├── App.css            # Application-specific styles
+│   ├── index.css          # Global styles
+│   └── main.tsx           # Browser entry point; mounts App inside the router
+├── index.html             # HTML page loaded by Vite
+├── package.json           # Dependencies and npm scripts
+├── package-lock.json      # Locked npm dependency versions
+├── tsconfig.json          # TypeScript settings for application code
+├── tsconfig.node.json     # TypeScript settings for Vite configuration
+├── vite.config.ts         # Vite server/build and Vitest configuration
+└── README.md
 ```
 
-## 🛠️ Available Scripts
+The browser loads `index.html`, which starts `src/main.tsx`; that mounts `App.tsx`, where the application routes are defined. Product data is loaded from JSON files under `public/products/`.
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+## Troubleshooting
+
+- If product data or images do not load, run the app with Vite and verify the corresponding files exist under `public/products/` or `public/products/productImages/`.
+- If Vite selects a different port, use the local URL printed in the terminal.
+- If installation or tests fail with a Node version error, verify that Node.js 20 or later is active.
