@@ -34,7 +34,7 @@ Run these from `eCommApp/`:
 | `npm run test:ui` | Open the Vitest UI |
 | `npm run test:coverage` | Run tests and print coverage; HTML report is written under `coverage/` |
 
-Tests use Vitest, React Testing Library, and jsdom. Test files use the `*.test.*` naming pattern and are kept beside the code they cover. At present, the suite contains a `CartPage` component test; there is no end-to-end test suite, so test coverage is limited. Shared test setup is in `src/test/setup.ts`, and `src/test/test-utils.tsx` provides a render helper with the router and cart provider.
+Tests use Vitest, React Testing Library, and jsdom. Test files use the `*.test.*` naming pattern and are kept beside the code they cover. The suite includes utility and cart-state unit tests, component tests for the shopping, login, and admin flows, and application route tests. There is no end-to-end test suite. Shared test setup is in `src/test/setup.ts`, and `src/test/test-utils.tsx` provides a render helper with the router and cart provider.
 
 ## Project structure
 

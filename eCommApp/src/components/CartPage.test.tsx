@@ -74,6 +74,18 @@ describe('CartPage', () => {
         expect(screen.getByText('Your cart is empty.')).toBeInTheDocument();
     });
 
+    it('throws a clear error when rendered without a cart provider', () => {
+        const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+        try {
+            expect(() => render(<CartPage />)).toThrow(
+                'CartContext must be used within a CartProvider'
+            );
+        } finally {
+            consoleError.mockRestore();
+        }
+    });
+
     it('shows the checkout confirmation and closes it when checkout is canceled', async () => {
         const user = userEvent.setup();
         renderWithCartContext();
