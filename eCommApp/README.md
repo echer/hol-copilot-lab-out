@@ -4,7 +4,7 @@ A TypeScript shopping website built with React and Vite. This application is the
 
 ## Prerequisites
 
-- Node.js 20 or later (required by the installed jsdom test environment)
+- Node.js 18 or later
 - npm
 
 ## Setup and run
@@ -67,4 +67,4 @@ The browser loads `index.html`, which starts `src/main.tsx`; that mounts `App.ts
 
 - If product data or images do not load, run the app with Vite and verify the corresponding files exist under `public/products/` or `public/products/productImages/`.
 - If Vite selects a different port, use the local URL printed in the terminal.
-- If installation or tests fail with a Node version error, verify that Node.js 20 or later is active.
+- If installation or tests fail with a Node version error, verify that Node.js 18 or later is active.
